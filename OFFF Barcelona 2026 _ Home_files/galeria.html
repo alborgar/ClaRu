@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Entradas (RSVP)</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    color: #fff;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    padding: 40px 20px 20px;
+  }
+
+  .form-box {
+    background: #53b455;
+    padding: 30px 20px 40px;
+  }
+
+  .intro {
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+  }
+
+  label {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  input,
+  select {
+    font-size: 1rem;
+    padding: 10px 12px;
+    border: none;
+    border-bottom: 3px solid #000;
+    background: rgba(255,255,255,0.3);
+    outline: none;
+  }
+
+  input:focus,
+  select:focus {
+    background: rgba(255,255,255,0.6);
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+  }
+
+  button {
+    margin-top: 30px;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 14px 30px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #000;
+    color: #fff;
+  }
+</style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Entradas (RSVP)</h1>
+
+    <form class="form-box">
+      <p class="intro">Rogamos rellenar 1 formulario por asistente:</p>
+
+      <div class="field">
+        <label>Nombre completo</label>
+        <input type="text">
+      </div>
+
+      <div class="field">
+        <label>Vendré</label>
+        <select>
+          <option>Sí</option>
+          <option>No</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Dietas especiales (vegetarianismo, alergias, celiaquía)</label>
+        <input type="text">
+      </div>
+
+      <div class="field">
+        <label>Transporte (sólo sábado)</label>
+        <select>
+          <option>No</option>
+          <option>Sí</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>¿Contamos contigo para la preboda del viernes?</label>
+        <select>
+          <option>Sí</option>
+          <option>No</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>¿Traeré niños?</label>
+        <select>
+          <option>No</option>
+          <option>Sí</option>
+        </select>
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+</body>
+</html>
