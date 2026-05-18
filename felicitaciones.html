@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClaRu - Libro de Visitas</title>
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --cyan: #32a9f1;
+            --red: #ff3131;
+            --magenta: #d661a8;
+            --green: #60af5d;
+            --orange: #ff7b32;
+            --gray: #cccccc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        /* CONFIGURACIÓN DE COLUMNAS DESIGUALES */
+        #guestbook {
+            column-count: 5; /* 5 columnas */
+            column-gap: 20px; /* Espacio entre columnas */
+            width: 100%;
+        }
+
+        .review {
+            /* Esto evita que una reseña se parta entre dos columnas */
+            break-inside: avoid;
+            margin-bottom: 20px; /* Espacio vertical entre reseñas */
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid var(--black);
+        }
+
+        .comment {
+            font-size: 1.15rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            text-transform: none;
+        }
+
+        /* ESTILOS PARA EL CONTENEDOR DEL VÍDEO */
+        .review-video {
+            width: 100%;
+            margin-bottom: 20px;
+            border: 2px solid var(--black);
+            display: block;
+        }
+
+        .author {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            background: var(--black);
+            color: var(--white);
+            display: inline-block;
+            padding: 5px 10px;
+            align-self: flex-start;
+        }
+
+        /* COLORES DE LA IMAGEN */
+        .bg-cyan { background-color: var(--cyan); }
+        .bg-red { background-color: var(--red); }
+        .bg-magenta { background-color: var(--magenta); }
+        .bg-green { background-color: var(--green); }
+        .bg-orange { background-color: var(--orange); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1400px) { #guestbook { column-count: 4; } }
+        @media (max-width: 1100px) { #guestbook { column-count: 3; } }
+        @media (max-width: 800px) { #guestbook { column-count: 2; } }
+        @media (max-width: 500px) { 
+            #guestbook { column-count: 1; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>LIBRO DE VISITAS</h1>
+    </header>
+
+    <main id="guestbook">
+        <!-- Las reseñas se inyectan aquí -->
+    </main>
+
+    <script>
+        // Aquí puedes añadir tus reseñas fácilmente
+        const reviews = [
+    { 
+        nombre: "Sara y Jordi", 
+        texto: "",
+        video: "v1.mp4" // EJEMPLO: Añade aquí la ruta de tu vídeo si la tarjeta lo requiere
+    },
+    { 
+        nombre: "Sara y Jordi", 
+        texto: "Simplemente queríamos desearos toda la felicidad que os merecéis. Hoy en día parece casi imposible encontrar a una persona con la que quieras compartir el resto de tu vida. Queríamos desearos que sigáis disfrutando, que continuéis viajando y persiguiendo conciertos y momentos. Que no os falte nunca el amor en vuestra vida, que seáis inmensamente felices juntos y que seáis el hogar y apoyo cuando el otro lo necesite. El amor en los momentos felices es cuando se disfruta, pero en los difíciles es cuando se demuestra. Sed muy felices y ¡que vivan los novios!",
+    },
+    { 
+        nombre: "Pablo (primo)", 
+        texto: "Hola, Clarita. No te imaginas lo que me alegra estar aquí contigo, con tu familia y con la mía, que afortunadamente es la misma. Siempre hemos tenido muchas cosas en común: nuestro humor algo oscuro y, sobre todo, las ganas de meternos con la Inma, que además se nos da muy bien. Ahora ya llevas unos años más lejos, nos vemos menos, pero con la misma fuerza que te empujaba en el columpio del corral de los yayos cuando éramos pequeños, ahora estamos unidos de alguna forma. Te deseo que te vaya genial, que seas feliz i que sigas así. Te quiere, tu primo Pablo." 
+    },
+    { 
+        nombre: "Jesús", 
+        texto: "En un matrimonio siempre hay que cuidar el amor y la dieta, porque de todos es sabido que panza con panza, la picha no alcanza. ¡Felicidades, pareja!" 
+    },
+    { 
+        nombre: "Inma", 
+        texto: "No soy nada original, así que mejor dejo las palabras a quien mejor sabe. Que tengáis un matrimonio muy feliz, que todas las noches sean noches de boda y que todas las lunas sean lunas de miel." 
+    },
+    { 
+        nombre: "Ana y Sara", 
+        texto: "Vuestra boda no podía NO ser un festival y, a partir de ahora, vuestra vida juntos no va a ser menos, porque, como dice la canción… ¿Qué podría ser mejor que estar siempre juntos tú y yo? ¡Enhorabuena, pareja! Os queremos y nos vemos en el SanSan siempre." 
+    },
+    { 
+        nombre: "Gal·la Rouras", 
+        texto: "Què maco és veure que dues persones tan especials s'han trobat i han decidit unir els seus destins per sempre. Feu una gran parella i us desitjo un futur màgic." 
+    },
+    { 
+        nombre: "Carmen (madre y suegra)", 
+        texto: "Queridos Clara y Roger: No celebramos solo una boda… celebramos que habéis decidido hacerlo oficial después de haber sobrevivido con éxito a la fase más dura: vivir juntos. Ya sabéis que el amor en pareja no es solo romanticismo… también son debates profundos sobre el lavavajillas o de quién son estos calcetines. Habéis convertido una casa en un hogar y aquí estáis: firmes y felices. Os deseo una vida llena de risas, paciencia infinita y muchas reconciliaciones que empiecen con un 'venga, te invito a cenar'. Con todo mi cariño, Carmen (madre y suegra, pero de las buenas)." 
+    },
+    { 
+        nombre: "Joaquín", 
+        texto: "Roger: Hoy es uno de esos días que se quedan para siempre. Hemos compartido muchísimo desde muy jóvenes, desde Mallorca hasta Barcelona, y en todo ese camino he tenido la suerte de aprender de ti. Clara: Es una alegría enorme verte aquí con él. Hacéis un equipo precioso y me alegra mucho compartir este momento con vosotros. Os deseo lo mejor. Con mucho cariño, Joaquín." 
+    },
+    { 
+        nombre: "Yacir Montes", 
+        texto: "Roger Daniel: el sobrino que la vida me regaló. De corazón le deseo muchísimas felicidades, confiando en Dios que esta unión esté cargada de complicidad, respeto y amor verdadero. ¡Se merecen toda la felicidad del mundo! Aunque no conozca a Clara, es suficiente que la hayas escogido como tu compañera para sentir el mismo aprecio. ¡Un abrazo gigante y que viva el amor!" 
+    },
+    { 
+        nombre: "Carolina Allegra Wagner", 
+        texto: "Os deseo que sigáis siendo color y ritmo, descubriendo quiénes sois y creando el 'nosotros' que queréis ser. Que celebréis vuestras victorias, llenéis la rutina de magia cotidiana, podáis sosteneros la mirada en la vulnerabilidad y que la ternura sea la música de fondo de vuestros días." 
+    },
+    { 
+        nombre: "José (papá)", 
+        texto: "Casados o no, siempre estaremos con vosotros para lo que haga falta. Cuidar nietos, p.ej." 
+    },
+    { 
+        nombre: "Vuestros resis pequeños", 
+        texto: "Queridos Clara y Roger: Qué ilusión celebrar este momento con vosotros. Habéis sido una parte muy importante de nuestros años en Barcelona. Entre quirófanos, guardias i cafés vimos empezar vuestra historia. Hoy, más allá de compañeros, sois amigos a los que queremos mucho. Os deseamos una vida llena de alegría, complicidad y mucho amor. Laura, Gaizka, Claudia P. y Claudia I." 
+    },
+    { 
+        nombre: "Elena", 
+        texto: "¡Clari, qué bien estamos! De compartir confidencias, risas y mil aventuras por el mundo, a verte dar este paso tan increíble. No me podía hacer más ilusión acompañarte también en esta etapa. ¡Que seáis muy felices y que la vida os regale un viaje eterno lleno de amor!" 
+    },
+    { 
+        nombre: "Elliot", 
+        texto: "¡Muchas felicidades, pareja! Es un placer acompañaros en vuestro gran día y veros tan felices. Gracias por invitarme a la inauguración oficial del CLaRufest. Os deseo lo mejor en esta nueva aventura. ¡A disfrutar del fiestón!" 
+    },
+    { 
+        nombre: "Elías e Iris", 
+        texto: "Queridos Clara y Roger: ¡Enhorabuena! Os deseamos una vida llena de música, amor y felicidad. Con cariño, Elías e Iris." 
+    },
+    { 
+        nombre: "Aída", 
+        texto: "Clara y Roger: Muchas gracias por ayudarme a elegir cuando más lo necesitaba y por guiarme en mi camino. Clara, siempre has sido una inspiración para mí y un modelo de cómo ser una buena médica. Os deseo lo mejor a los dos, que os elijáis cada día y seáis muy felices." 
+    },
+    { 
+        nombre: "Montse Ballester", 
+        texto: "¡Enhorabuena a los dos! Qué bonito poder compartir este día con vosotros. Después de casi 20 años, ¡quién iba a decir que estaríamos aquí! ¡Qué alegría celebraros!" 
+    },
+    { 
+        nombre: "Laia Escude", 
+        texto: "Roger, para ponerme en situación me puse a ver fotos antiguas y joder, llagrimeta… Han pasado ya muchos años desde que coincidimos en Bellaterra y de manera super random elegimos Vallebronx. Yo pensaba que eras un repelente de las comisiones, y nunca me imagine que ibas a ser el mejor compi de clases, ralladas, birras en el hood, fiestas en Jamboree y miles de jiajondos. Me encanta seguir con el viaje, ahora ya modo adultos con los achaques de la edad y mas picofinos. Pero pase lo que pase sigue siendo buen parguel y mejor persona. Clara, admiro la passió que li poses absolutament a tot a la vida, i no podria imaginar millor companya de viatge pel meu amic que tu. És molt bonic veure que sent tan diferents en algunes coses, us contagieu les millors parts l’un de l’altre. Amb l’Albert ens fa molt feliços tenir-vos apropet i estar aquí un dia com avui amb tanta gent que us estima. Per molts més bons moments 🤍" 
+    },
+    { 
+        nombre: "Vicenç Pedret", 
+        texto: "Cuando estábamos buscando batería en Ocata, Kevin, Pepe y yo nos vimos con Roger por primera vez y dudábamos de si era la mejor opción. Roger estaba haciendo el MIR y, aunque nos cayó bien, nos daba miedo que acabara en otra ciudad al año siguiente. Seguíamos dudando la segunda vez que nos vimos con él. Yo, que soy más mental, tenía la intención de decirle que gracias por venir pero que no lo veíamos claro. Él nos propuso ensayar primero y hablar después. Recuerdo muy bien ese ensayo. Nos boló la cabeza a los 3. No hizo falta ni hablar después de ese ensayo. Los 3 sentimos que Roger ya era Ocata. Lo sentimos con la mente y con el corazón y estuvimos muy tranquilos al tomar la decisión. Mirando para atrás veo claro que no había decisión en realidad. Siento que vosotros dos, Roger i Clara, estáis tomando una decisión similar (aunque con consecuencias bastante más permanentes!). Pero no creo que nadie de los que estamos en la boda ponga en duda vuestra unión: habéis tenido suerte de encontraros y la habéis aprovechado. ¡Os deseo lo mejor siempre!" 
+    },
+    { 
+        nombre: "Nuria, Jose, Sofia, Jose Hijo, Irene y Andrés", 
+        texto: "💛 Clara y Roger. Nos hace mucha ilusión veros llegar a este momento. Qué suerte la vuestra haberos encontrado. Y qué suerte la de todos los que os queremos de poder celebrarlo con vosotros. Esperamos que vuestra vida esté llena de amor, salud, risas y una paciencia infinita para montar muebles de Ikea en pareja. Y Roger, gracias por confirmar que Clara finalmente encontró a alguien capaz de seguirle el ritmo. No parecía fácil. Os queremos mucho. Disfrutad cada segundo de este día y de lo que os queda de vida porque os la habéis ganado." 
+    }
+];
+
+        const colors = ['bg-cyan', 'bg-red', 'bg-magenta', 'bg-green', 'bg-orange'];
+        const container = document.getElementById('guestbook');
+
+        // Función para mezclar colores de forma aleatoria (Fisher-Yates shuffle)
+        function getRandomColor(lastColor) {
+            let availableColors = colors.filter(c => c !== lastColor);
+            return availableColors[Math.floor(Math.random() * availableColors.length)];
+        }
+
+        function loadReviews() {
+            let lastColor = "";
+            reviews.forEach((r) => {
+                const div = document.createElement('div');
+                const currentColor = getRandomColor(lastColor);
+                lastColor = currentColor;
+                
+                div.className = `review ${currentColor}`;
+                
+                // Lógica para inyectar la etiqueta de vídeo solo si existe en la reseña
+                let videoHTML = "";
+                if (r.video) {
+                    videoHTML = `<video class="review-video" controls><source src="${r.video}" type="video/mp4">Tu navegador no soporta vídeos.</video>`;
+                }
+
+                div.innerHTML = `
+                    <div class="comment">${r.texto}</div>
+                    ${videoHTML}
+                    <div class="author">${r.nombre}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        loadReviews();
+    </script>
+</body>
+</html>
