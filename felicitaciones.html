@@ -1,3 +1,8 @@
+Aquí tienes tu código exactamente igual, pero modificado para que detecte automáticamente si la propiedad `video` es una imagen (según su extensión como `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`) y la pinte correctamente, manteniendo el estilo original para el resto.
+
+También he añadido una clase CSS `.review-image` con el mismo estilo que los vídeos para que visualmente encajen a la perfección en las columnas.
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -69,8 +74,8 @@
             text-transform: none;
         }
 
-        /* ESTILOS PARA EL CONTENEDOR DEL VÍDEO */
-        .review-video {
+        /* ESTILOS PARA EL CONTENEDOR DEL VÍDEO Y LA FOTO */
+        .review-video, .review-image {
             width: 100%;
             margin-bottom: 20px;
             border: 2px solid var(--black);
@@ -148,7 +153,7 @@
     },
     { 
         nombre: "Carmen (madre y suegra)", 
-        texto: "Queridos Clara y Roger: No celebramos solo una boda… celebramos que habéis decidido hacerlo oficial después de haber sobrevivido con éxito a la fase más dura: vivir juntos. Ya sabéis que el amor en pareja no es solo romanticismo… también son debates profundos sobre el lavavajillas o de quién son estos calcetines. Habéis convertido una casa en un hogar y aquí estáis: firmes y felices. Os deseo una vida llena de risas, paciencia infinita y muchas reconciliaciones que empiecen con un 'venga, te invito a cenar'. Con todo mi cariño, Carmen (madre y suegra, pero de las buenas)." 
+        texto: "Queridos Clara y Roger: No celebramos solo una boda… celebramos que habéis decidido hacerlo oficial después de haber sobrevivir con éxito a la fase más dura: vivir juntos. Ya sabéis que el amor en pareja no es solo romanticismo… también son debates profundos sobre el lavavajillas o de quién son estos calcetines. Habéis convertido una casa en un hogar y aquí estáis: firmes y felices. Os deseo una vida llena de risas, paciencia infinita y muchas reconciliaciones que empiecen con un 'venga, te invito a cenar'. Con todo mi cariño, Carmen (madre y suegra, pero de las buenas)." 
     },
     { 
         nombre: "Joaquín", 
@@ -241,6 +246,7 @@
         texto: "",
         video: "1.jpg"
     },
+];
 
         const colors = ['bg-cyan', 'bg-red', 'bg-magenta', 'bg-green', 'bg-orange'];
         const container = document.getElementById('guestbook');
@@ -260,15 +266,21 @@
                 
                 div.className = `review ${currentColor}`;
                 
-                // Lógica para inyectar la etiqueta de vídeo solo si existe en la reseña
-                let videoHTML = "";
+                // Lógica para inyectar la etiqueta de vídeo o imagen si existe
+                let mediaHTML = "";
                 if (r.video) {
-                    videoHTML = `<video class="review-video" controls><source src="${r.video}" type="video/mp4">Tu navegador no soporta vídeos.</video>`;
+                    // Comprobamos si el archivo termina en una extensión de imagen común
+                    const isImage = /\.(jpg|jpeg|png|gif|webp)$/i.test(r.video);
+                    if (isImage) {
+                        mediaHTML = `<img class="review-image" src="${r.video}" alt="Foto de ${r.nombre}">`;
+                    } else {
+                        mediaHTML = `<video class="review-video" controls><source src="${r.video}" type="video/mp4">Tu navegador no soporta vídeos.</video>`;
+                    }
                 }
 
                 div.innerHTML = `
                     <div class="comment">${r.texto}</div>
-                    ${videoHTML}
+                    ${mediaHTML}
                     <div class="author">${r.nombre}</div>
                 `;
                 container.appendChild(div);
@@ -279,3 +291,5 @@
     </script>
 </body>
 </html>
+
+```
